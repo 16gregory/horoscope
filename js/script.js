@@ -1,79 +1,55 @@
-var feed = Helpers.getParameterByName('feed');
-var source = 'https://deepidoo-templates.oss-eu-central-1.aliyuncs.com/data/feeds/' + feed +'.json';
-var pics = [];
-var news = [];
-var categories = {
-  'lemonde': 'news', 
-  'elpais': 'news',
-  'moroco': 'news',
-  'sports': 'sports'
-};
+let i = 0;
 
-translateAll = function() {
-  $("[data-t]").each(function(e) {
-    $(this).text(translations[feed]);
-  })
+function load() {
+
+  display();
+
+  setInterval(function () {
+    display()
+  }, 10000)
+
+
 }
 
-fetchFeed = function() {
-  $.ajax({
-    url: source,
-    cache: false,
-    success: function(data) {
-      startFeed(data);
+function display() {
+  console.log(i)
+  const signs = [
+    { icon: 'aries', prediction: "Date: March 21-April 19. The first sign of the zodiac, Aries loves to be number one. Naturally, this dynamic fire sign is no stranger to competition. Bold and ambitious, Aries dives headfirst into even the most challenging situations—and they'll make sure they always come out on top! Read your sign's full profile here. Next, read this month's Aries horoscope predictions." },
+    { icon: 'taurus', prediction: "Date: April 20-May 20. What sign is more likely to take a six-hour bath, followed by a luxurious Swedish massage and decadent dessert spread? Why Taurus, of course! Taurus is an earth sign represented by the bull. Like their celestial spirit animal, Taureans enjoy relaxing in serene, bucolic environments surrounded by soft sounds, soothing aromas, and succulent flavors. Read your sign's full profile here. Next, read this month's Taurus horoscope predictions." },
+    { icon: 'gemini', prediction: "Date: May 21-June 20. Have you ever been so busy that you wished you could clone yourself just to get everything done? That's the Gemini experience in a nutshell. Spontaneous, playful, and adorably erratic, Gemini is driven by its insatiable curiosity. Appropriately symbolized by the celestial twins, this air sign was interested in so many pursuits that it had to double itself. You know, NBD!  Read your sign's full profile here. Next, read this month's Gemini horoscope predictions." },
+    { icon: 'cancer', prediction: "Date: June 21-July 22. Represented by the crab, Cancer seamlessly weaves between the sea and shore representing Cancer is ability to exist in both emotional and material realms. Cancers are highly intuitive and their psychic abilities manifest in tangible spaces. But—just like the hard-shelled crustaceans—this water sign is willing to do whatever it takes to protect itself emotionally. In order to get to know this sign, you're going to need to establish trust!  Read your sign's full profile here. Next, read this month's Cancer horoscope predictions." },
+    { icon: 'leo', prediction: "Date: July 23-August 22. Roll out the red carpet because Leo has arrived. Passionate, loyal, and infamously dramatic, Leo is represented by the lion and these spirited fire signs are the kings and queens of the celestial jungle. They're delighted to embrace their royal status: Vivacious, theatrical, and fiery, Leos love to bask in the spotlight and celebrate… well, themselves. Read your sign's full profile here. Next, read this month's Leo horoscope predictions." },
+    { icon: 'virgo', prediction: "Date: August 23-September 22. You know the expression, if you want something done, give it to a busy person? Well, that definitely is the Virgo anthem. Virgos are logical, practical, and systematic in their approach to life. Virgo is an earth sign historically represented by the goddess of wheat and agriculture, an association that speaks to Virgo's deep-rooted presence in the material world. This earth sign is a perfectionist at heart and isn’t afraid to improve skills through diligent and consistent practice. Read your sign s full profile here. Next, read this month s Virgo horoscope predictions." },
+    { icon: 'libra', prediction: "Date: September 23-October 22. Balance, harmony, and justice define Libra energy. As a cardinal air sign, Libra is represented by the scales (interestingly, the only inanimate object of the zodiac), an association that reflects Libra's fixation on establishing equilibrium. Libra is obsessed with symmetry and strives to create equilibrium in all areas of life — especially when it comes to matters of the heart. Read your sign's full profile here. Next, read this month's Libra horoscope predictions." },
+    { icon: 'scorpio', prediction: "Date: October 23-November 21. Elusive and mysterious, Scorpio is one of the most misunderstood signs of the zodiac. Scorpio is a water sign that uses emotional energy as fuel, cultivating powerful wisdom through both the physical and unseen realms. In fact, Scorpio derives its extraordinary courage from its psychic abilities, which is what makes this sign one of the most complicated, dynamic signs of the zodiac. Read your sign's full profile here. Next, read this month's Scorpio horoscope predictions." },
+    { icon: 'sagittarius', prediction: "Date: November 22-December 21. Oh, the places Sagittarius goes! But… actually. This fire sign knows no bounds. Represented by the archer, Sagittarians are always on a quest for knowledge. The last fire sign of the zodiac, Sagittarius launches its many pursuits like blazing arrows, chasing after geographical, intellectual, and spiritual adventures.  Read your sign's full profile here. Next, read this month's Sagittarius horoscope predictions." },
+    { icon: 'capricorn', prediction: "Date: December 22-January 19. What is the most valuable resource? For Capricorn, the answer is clear: Time. Capricorn is climbing the mountain straight to the top and knows that patience, perseverance, and dedication is the only way to scale. The last earth sign of the zodiac, Capricorn, is represented by the sea-goat, a mythological creature with the body of a goat and the tail of a fish. Accordingly, Capricorns are skilled at navigating both the material and emotional realms. Read your sign's full profile here. Next, read this month's Capricorn horoscope predictions." },
+    { icon: 'aquarius', prediction: "Date: January 20-February 18. Despite the aqua in its name, Aquarius is actually the last air sign of the zodiac. Innovative, progressive, and shamelessly revolutionary, Aquarius is represented by the water bearer, the mystical healer who bestows water, or life, upon the land. Accordingly, Aquarius is the most humanitarian astrological sign. At the end of the day, Aquarius is dedicated to making the world a better place. Read your sign's full profile here. Next, read this month's Aquarius horoscope predictions." },
+    { icon: 'pisces', prediction: "Date: February 19-March 20. If you looked up the word psychic in the dictionary, there would definitely be a picture of Pisces next to it. Pisces is the most intuitive, sensitive, and empathetic sign of the entire zodiac — and thats because its the last of the last. As the final sign, Pisces has absorbed every lesson — the joys and the pain, the hopes and the fears — learned by all of the other signs. It's symbolized by two fish swimming in opposite directions, representing the constant division of Pisces' attention between fantasy and reality. Read your sign's full profile here. Next, read this month's Pisces horoscope predictions." },
+  ];
+
+  $.ajax('https://ohmanda.com/api/horoscope/aquarius/', {
+    type: 'GET',
+    success: function (data, status, xhr) {
+      console.log(data);
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      //      $('p').append('Error' + errorMessage);
     }
   });
-}
 
-startFeed = function(stream) {
-  $('.container').addClass(categories[feed]);
-  
-  var items = stream.text;
-  for (var i = 0; i < items.length; i++) {
-    pics.push(items[i].picture);
-    news.push(items[i].title);
-  };
+  let html = '';
+  html += '<div class="today">';
+  html += '  <div class="sign ' + signs[i].icon + '"></div>';
+  html += '  <p>' + signs[i].prediction + '</p>';
+  html += '</div>';
 
-  updateFeed();
-};
+  $("#signs").html(html);
 
-showDate = function() {
-  current_date = Helpers.getDate();
-  document.getElementById('date').innerText = current_date['day'] + "/" + current_date['month'] + "/" + current_date['year'];
-  document.getElementById('hour').innerText = current_date['hours'] + ":" + current_date['minutes']
-
-  setTimeout(function() {
-    showDate();
-  }, 1000);
-}
-
-updateFeed = function() {
-  var counter = 1;
-  $('.picture').css('background-image',"url('" + pics[0] + "')")
-  $('.info-detail').text(news[0])
-  if(feed == 'moroco') {
-    $('.info-detail').addClass('rtl');
+  if (i < 11) {
+    i++;
+  } else {
+    i = 0;
   }
-  setInterval(function() {
-    var articlesNumber = news.length;
-    $('.picture').fadeOut( "slow", function(){
-      $('.picture').css('background-image',"url('" + pics[counter] + "')")
-    });
 
-    $('div.content .info-detail').slideUp(500, function(){
-      $('.info-detail').text(news[counter])
-      $('div.content .info-detail').slideDown();
-    });
-    $('.picture').fadeIn();
-    counter += 1;
-    if (counter === articlesNumber) {
-      counter = 0;
-    }
-  }, 7000);
 }
-
-$(document).ready(function() {
-  fetchFeed();
-  translateAll();
-  showDate();
-});

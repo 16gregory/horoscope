@@ -1,168 +1,97 @@
 @import 'https://fonts.googleapis.com/css?family=Lato:300';
 
-body, html {
-  margin:0;
+body,
+html {
+  margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #102F6F;
+
+}
+
 .container {
-  width: 100vw;
-  height: 100vh;
-  background-color: #102F6F;
-  background-size: cover;
-  position: relative;
-  overflow: hidden;
-}
-.container.news {
-  background-color: #102F6F;
-}
-.container.news .text-container {
-  background-color: #435B90;
-}
-.container.sports {
-  background-color: #01802B;
-}
-.container.sports .text-container {
-  background-color: #4DA956;
-}
-
-.overlay {
-  position: absolute;
+  text-align: center;
   top: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  opacity: 0.3;
-  background-position: center;
+  margin-top: 0;
+}
+
+.sign {
+  display: block;
+  float: left;
+  width: 28%;
+  height: 333px;
+  background-image: url(/home/deepibox/www/zodiac/assets/zodiac.png);
   background-repeat: no-repeat;
-  background-size: cover;
-  
 }
 
-
-.img-circle {
-  border-radius: 50%;
-}
-.rtl {
-  /* text-align: right; */
-  direction: rtl;
-}
-.picture {
-  padding: 1%;
-  position: fixed;
-  top: 30%;
-  left: 5%;
-  z-index: 99;
-  width: 25%;
-  height: 40%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  -webkit-box-shadow: -1px 13px 5px -8px rgba(0,0,0,0.46);
-  -moz-box-shadow: -1px 13px 5px -8px rgba(0,0,0,0.46);
-  box-shadow: -1px 13px 5px -8px rgba(0,0,0,0.46);
-}
-.content h1 {
-  display: inline;
-  color: white;
-  margin: 3%;
-  padding: 1%;
-  font-size: 3em;
+.sign.aries {
+  background-position: -30px 0;
 }
 
-.date {
-  color: #fff;
-  position: absolute;
-  z-index: 99;
-  top: 5%;
-  left: 5%;
-  font-size: 2.5em;
+.sign.taurus {
+  background-position: -260px 0;
 }
 
-.hour {
-  color: #ffffff;
-  position: absolute;
-  z-index: 99;
-  bottom: 5%;
-  right: 5%;
-  font-size: 2.5em;
-}
-.content {
-  position: absolute;
-  color: #ffffff;
-  right: 5%;
-  z-index: 99;
-  width: 40%;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
-}
-.content p {
-  padding: 3%;
+.sign.gemini {
+  background-position: -520px 0;
 }
 
-@media screen and (orientation:portrait) { 
-  .content {
-    bottom: 15%;
-    height: 30%;
-  }
-  .picture {
-    top: 15%;
-    width: 35%;
-    height: 30%;
-  }
-  .container.sports .overlay {
-    background-image: url("../assets/sports-vertical.jpg")
-  }
-  .container.news .overlay {
-    background-image: url("../assets/news-vertical.jpg");
-  }
-}
-@media screen and (orientation:landscape) { 
-  .content {
-    top: 30%;
-  }
-  .picture {
-    top: 30%;
-    width: 25%;
-    height: 40%;
-  }
-}
-@media screen and (max-width: 400px) {
-  .content h1 {
-    font-size: 2em;
-  }
-  .content p {
-    font-size: 1em;
-  }
+.sign.cancer {
+  background-position: -760px 0;
 }
 
-@media screen and (min-width: 401px) and (max-width: 600px) {
-  .content h1 {
-    font-size: 2.3em;
-  }
-  .content p {
-    font-size: 1.1em;
-  }
+.sign.leo {
+  background-position: -30px -333px;
 }
 
-@media screen and (min-width: 601px) and (max-width: 800px) {
-  .content h1 {
-    font-size: 3em;
-  }
-  .content p {
-    font-size: 1.5em;
-  }
+.sign.virgo {
+  background-position: -260px -333px;
 }
 
-@media screen and (min-width: 801px) and (max-width: 1200px) {
-  .content p {
-    font-size: 1.8em;
-  }
+.sign.libra {
+  background-position: -520px -333px;
 }
 
-@media screen and (min-width: 1201px) {
-  .content p {
-    font-size: 2.6em;
-  }
+.sign.scorpio {
+  background-position: -760px -333px;
+}
+
+.sign.sagittarius {
+  background-position: -30px -666px;
+}
+
+.sign.capricorn {
+  background-position: -260px -666px;
+}
+
+.sign.aquarius {
+  background-position: -520px -666px;
+}
+
+.sign.pisces {
+  background-position: -760px -666px;
+}
+
+.today {
+  clear: both;
+  margin: calc(100vh - 750px) auto 0 auto;
+  height: 500px;
+  width: 80%;
+  background-color: #fff;
+}
+
+.today p {
+  color: #000000;
+  text-align: left;
+  display: block;
+  width: 70%;
+  height: 500px;
+  float: left;
+  font-size: 30px;
+  text-align: left;
 }
